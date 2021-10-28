@@ -31,4 +31,10 @@ const update = (id, newObject) => {
 //   update: update
 // }
 //  to this
-export default { getAll, create, update };
+
+const fetchAll = {
+  getAll,
+  create,
+  update,
+};
+export default fetchAll;
