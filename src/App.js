@@ -24,10 +24,23 @@ const App = () => {
       important: Math.random() > 0.5,
       id: notes.length + 1,
     };
-    noteService.create(noteObject).then((returnedNote) => {
-      setNotes(notes.concat(returnedNote));
-      setNewNote("");
-    });
+    noteService
+      .create(noteObject)
+      .then((returnedNote) => {
+        setNotes(notes.concat(returnedNote));
+        setNewNote("");
+        setErrorMessage(`Note '${noteObject.content}' succesfully saved.`);
+        setTimeout(() => {
+          setErrorMessage(null);
+        }, 5000);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        setErrorMessage(error.response.data);
+        setTimeout(() => {
+          setErrorMessage(null);
+        }, 5000);
+      });
   };
 
   const handleNoteChange = (event) => {
