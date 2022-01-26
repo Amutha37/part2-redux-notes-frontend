@@ -1,53 +1,58 @@
-import React, { useState, useEffect } from "react";
-import Note from "./components/Note";
-import Notification from "./components/Notification";
-import Footer from "./components/Footer";
-import noteService from "./services/notes";
+import React, { useState, useEffect } from 'react'
+import Note from './components/Note'
+import Notification from './components/Notification'
+import Footer from './components/Footer'
+import noteService from './services/notes'
+import loginService from './services/login'
 
 const App = () => {
-  const [notes, setNotes] = useState([]);
-  const [newNote, setNewNote] = useState("");
-  const [showAll, setShowAll] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("error display banner...");
+  const [notes, setNotes] = useState([])
+  const [newNote, setNewNote] = useState('')
+  const [showAll, setShowAll] = useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [user, setUser] = useState(null)
+
+  const [errorMessage, setErrorMessage] = useState('error display banner...')
 
   useEffect(() => {
     noteService.getAll().then((initialNotes) => {
-      setNotes(initialNotes);
-    });
-  }, []);
+      setNotes(initialNotes)
+    })
+  }, [])
 
   const addNote = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     const noteObject = {
       content: newNote,
       date: new Date().toISOString(),
       important: Math.random() > 0.5,
       id: notes.length + 1,
-    };
+    }
     noteService
       .create(noteObject)
       .then((returnedNote) => {
-        setNotes(notes.concat(returnedNote));
-        setNewNote("");
-        setErrorMessage(`Note '${noteObject.content}' succesfully saved.`);
+        setNotes(notes.concat(returnedNote))
+        setNewNote('')
+        setErrorMessage(`Note '${noteObject.content}' succesfully saved.`)
         setTimeout(() => {
-          setErrorMessage(null);
-        }, 5000);
+          setErrorMessage(null)
+        }, 5000)
       })
       .catch((error) => {
-        console.log(error.response.data);
-        setErrorMessage(error.response.data);
+        console.log(error.response.data)
+        setErrorMessage(error.response.data)
         setTimeout(() => {
-          setErrorMessage(null);
-        }, 5000);
-      });
-  };
+          setErrorMessage(null)
+        }, 5000)
+      })
+  }
 
   const handleNoteChange = (event) => {
-    setNewNote(event.target.value);
-  };
+    setNewNote(event.target.value)
+  }
   // show list of important and all
-  const notesToShow = showAll ? notes : notes.filter((note) => note.important);
+  const notesToShow = showAll ? notes : notes.filter((note) => note.important)
 
   // toggle button
   const toggleImportanceOf = (id) => {
@@ -59,35 +64,99 @@ const App = () => {
     // new note is then sent with a PUT request to the backend where it will replace the old object. put(url, changedNote)
     // callback function sets the state and render component notes with new array , except for the old note with is replaced with teh note exact item.
 
-    const note = notes.find((n) => n.id === id);
-    const changedNote = { ...note, important: !note.important };
+    const note = notes.find((n) => n.id === id)
+    const changedNote = { ...note, important: !note.important }
 
     noteService
       .update(id, changedNote)
       .then((returnedNote) => {
-        setNotes(notes.map((note) => (note.id !== id ? note : returnedNote)));
+        setNotes(notes.map((note) => (note.id !== id ? note : returnedNote)))
       })
       .catch((error) => {
         setErrorMessage(
           `Note '${note.content}' was already removed from server`
-        );
+        )
         setTimeout(() => {
-          setErrorMessage(null);
-        }, 5000);
+          setErrorMessage(null)
+        }, 5000)
         // alert(
         //   `the note '${note.content}' was already deleted from server`
         // )
-        setNotes(notes.filter((n) => n.id !== id));
-      });
-  };
+        setNotes(notes.filter((n) => n.id !== id))
+      })
+  }
+  // === login handler ===
+  const handleLogin = async (event) => {
+    event.preventDefault()
+
+    try {
+      const user = await loginService.login({
+        username,
+        password,
+      })
+      setUser(user)
+      setUsername('')
+      setPassword('')
+    } catch (exception) {
+      setErrorMessage('Wrong credentials')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
+  }
+
+  // === login form ===
+
+  const loginForm = () => (
+    <div className='login_form_container'>
+      <form className='login_form' onSubmit={handleLogin}>
+        <div>
+          username
+          <input
+            type='text'
+            value={username}
+            name='Username'
+            onChange={({ target }) => setUsername(target.value)}
+          />
+        </div>
+        <div>
+          password
+          <input
+            type='password'
+            value={password}
+            name='Password'
+            onChange={({ target }) => setPassword(target.value)}
+          />
+        </div>
+        <button type='submit'>login</button>
+      </form>
+    </div>
+  )
+
+  const noteForm = () => (
+    <form onSubmit={addNote}>
+      <input value={newNote} onChange={handleNoteChange} />
+      <button type='submit'>save</button>
+    </form>
+  )
 
   return (
-    <div>
+    <div className='main_container'>
       <h1>Notes</h1>
       <Notification message={errorMessage} />
+      {/* == conditional form */}
+      {user === null ? (
+        loginForm()
+      ) : (
+        <div>
+          <p>{user.name} logged-in</p>
+          {noteForm()}
+        </div>
+      )}
+
       <div>
         <button onClick={() => setShowAll(!showAll)}>
-          show {showAll ? "important" : "all"}
+          show {showAll ? 'important' : 'all'}
         </button>
       </div>
       <ul>
@@ -101,11 +170,11 @@ const App = () => {
       </ul>
       <form onSubmit={addNote}>
         <input value={newNote} onChange={handleNoteChange} />
-        <button type="submit">save</button>
+        <button type='submit'>save</button>
       </form>
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
