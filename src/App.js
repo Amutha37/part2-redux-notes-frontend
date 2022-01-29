@@ -9,16 +9,26 @@ const App = () => {
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(false)
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
 
-  const [errorMessage, setErrorMessage] = useState('error display banner...')
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     noteService.getAll().then((initialNotes) => {
       setNotes(initialNotes)
     })
+  }, [])
+  // Handle the first loading page with user loged in
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      noteService.setToken(user.token)
+    }
   }, [])
 
   const addNote = (event) => {
@@ -94,14 +104,17 @@ const App = () => {
         username,
         password,
       })
+      window.localStorage.setItem('loggedNoteappUser', JSON.stringify(user))
+      noteService.setToken(user.token)
       setUser(user)
+      console.log('logging in with', username, password)
       setUsername('')
       setPassword('')
     } catch (exception) {
       setErrorMessage('Wrong credentials')
       setTimeout(() => {
         setErrorMessage(null)
-      }, 5000)
+      }, 100000)
     }
   }
 
@@ -168,10 +181,6 @@ const App = () => {
           />
         ))}
       </ul>
-      <form onSubmit={addNote}>
-        <input value={newNote} onChange={handleNoteChange} />
-        <button type='submit'>save</button>
-      </form>
       <Footer />
     </div>
   )
