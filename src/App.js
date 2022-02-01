@@ -15,6 +15,7 @@ const App = () => {
   const [user, setUser] = useState(null)
 
   const [errorMessage, setErrorMessage] = useState(null)
+  const [errTextColour, setErrTextColour] = useState(true)
 
   useEffect(() => {
     noteService.getAll().then((initialNotes) => {
@@ -39,6 +40,7 @@ const App = () => {
       important: Math.random() > 0.5,
       id: notes.length + 1,
     }
+    setErrTextColour(false)
     noteService
       .create(noteObject)
       .then((returnedNote) => {
@@ -51,6 +53,7 @@ const App = () => {
       })
       .catch((error) => {
         console.log(error.response.data)
+        setErrTextColour(true)
         setErrorMessage(error.response.data)
         setTimeout(() => {
           setErrorMessage(null)
@@ -111,10 +114,10 @@ const App = () => {
       setUsername('')
       setPassword('')
     } catch (exception) {
-      setErrorMessage('Wrong credentials')
+      setErrorMessage('Wrong user name or password!')
       setTimeout(() => {
         setErrorMessage(null)
-      }, 100000)
+      }, 5000)
     }
   }
 
@@ -153,16 +156,27 @@ const App = () => {
     </form>
   )
 
+  //  === signoff ===
+  const signOff = () => {
+    window.localStorage.clear()
+    return setUser(null)
+    // return loginForm()
+  }
+
   return (
     <div className='main_container'>
       <h1>Notes</h1>
-      <Notification message={errorMessage} />
+      <Notification message={errorMessage} textColor={errTextColour} />
       {/* == conditional form */}
       {user === null ? (
         loginForm()
       ) : (
         <div>
-          <p>{user.name} logged-in</p>
+          <p>{user.name} logged-in</p>{' '}
+          <button type='button' onClick={signOff}>
+            {' '}
+            Log Out
+          </button>
           {noteForm()}
         </div>
       )}
