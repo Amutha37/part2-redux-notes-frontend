@@ -32,7 +32,7 @@ const App = () => {
     }
   }, [])
 
-  const addNote = (event) => {
+  const addNote = async (event) => {
     event.preventDefault()
     const noteObject = {
       content: newNote,
@@ -41,24 +41,25 @@ const App = () => {
       id: notes.length + 1,
     }
     setErrTextColour(false)
-    noteService
-      .create(noteObject)
-      .then((returnedNote) => {
-        setNotes(notes.concat(returnedNote))
-        setNewNote('')
-        setErrorMessage(`Note '${noteObject.content}' succesfully saved.`)
-        setTimeout(() => {
-          setErrorMessage(null)
-        }, 5000)
-      })
-      .catch((error) => {
-        console.log(error.response.data)
-        setErrTextColour(true)
-        setErrorMessage(error.response.data)
-        setTimeout(() => {
-          setErrorMessage(null)
-        }, 5000)
-      })
+    try {
+      const saveNotes = await noteService.create(noteObject)
+      // .then((returnedNote) => {
+      // setNotes(notes.concat(noteObject))
+      setNotes([...notes, saveNotes])
+      setNewNote('')
+      setErrorMessage(`Note '${noteObject.content}' succesfully saved.`)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+      // })
+    } catch (error) {
+      console.log(error.response.data)
+      setErrTextColour(true)
+      setErrorMessage(error.response.data)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
   }
 
   const handleNoteChange = (event) => {
