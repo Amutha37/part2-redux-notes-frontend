@@ -13,8 +13,6 @@ const App = () => {
   // const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(false)
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
 
   const [errorMessage, setErrorMessage] = useState(null)
@@ -35,13 +33,29 @@ const App = () => {
     }
   }, [])
 
-  const addNote = (noteObject) => {
-    noteService.create(noteObject).then((returnedNote) => {
-      setNotes(notes.concat(returnedNote))
-    })
-
+  const addNote = async (noteObject) => {
+    // noteService.create(noteObject).then((returnedNote) => {
+    //   setNotes(notes.concat(returnedNote))
+    // })
     setErrTextColour(false)
-    setErrorMessage(`Note '${noteObject.content}' succesfully saved.`)
+    try {
+      const saveNotes = await noteService.create(noteObject)
+      // .then((returnedNote) => {
+      // setNotes(notes.concat(noteObject))
+      setNotes([...notes, saveNotes])
+      setErrorMessage(`Note '${noteObject.content}' succesfully saved.`)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+      // })
+    } catch (error) {
+      console.log(error.response.data)
+      setErrTextColour(true)
+      setErrorMessage(error.response.data)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+    }
   }
 
   // show list of important and all
@@ -79,20 +93,16 @@ const App = () => {
       })
   }
   // === login handler ===
-  const handleLogin = async (event) => {
-    event.preventDefault()
-
+  const handleLogin = async (blogObject) => {
     try {
       const user = await loginService.login({
-        username,
-        password,
+        username: blogObject.username,
+        password: blogObject.password,
       })
       window.localStorage.setItem('loggedNoteappUser', JSON.stringify(user))
       noteService.setToken(user.token)
       setUser(user)
-      console.log('logging in with', username, password)
-      setUsername('')
-      setPassword('')
+      console.log('logging in with', user.username, user.password)
     } catch (exception) {
       setErrorMessage('Wrong user name or password!')
       setTimeout(() => {
@@ -100,17 +110,35 @@ const App = () => {
       }, 5000)
     }
   }
+  // Without try and catch
+
+  //   const user = await loginService.login({
+  //     username: blogObject.username,
+  //     password: blogObject.password,
+  //   })
+  //   window.localStorage.setItem('loggedNoteappUser', JSON.stringify(user))
+  //   noteService.setToken(user.token)
+  //   setUser(user)
+  //   console.log('logging in with', blogObject.username, blogObject.password)
+
+  //   setErrorMessage(
+  //     `Note '${blogObject.username}' succesfully saved.`,
+  //     setTimeout(() => {
+  //       setErrorMessage(null)
+  //     }, 5000)
+  //   )
+  // }
 
   // === login form ===
 
   const loginForm = () => (
     <Togglable buttonLabel='log in'>
       <LoginForm
-        username={username}
-        password={password}
-        handleUsernameChange={({ target }) => setUsername(target.value)}
-        handlePasswordChange={({ target }) => setPassword(target.value)}
-        handleSubmit={handleLogin}
+        // username={username}
+        // password={password}
+        // handleUsernameChange={({ target }) => setUsername(target.value)}
+        // handlePasswordChange={({ target }) => setPassword(target.value)}
+        createLogin={handleLogin}
       />
     </Togglable>
   )
