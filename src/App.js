@@ -4,6 +4,9 @@ import Notification from './components/Notification'
 import Footer from './components/Footer'
 import noteService from './services/notes'
 import loginService from './services/login'
+import LoginForm from './components/LoginForm'
+import NoteForm from './components/NoteForm'
+import Togglable from './components/Togglable'
 
 const App = () => {
   const [notes, setNotes] = useState([])
@@ -125,43 +128,36 @@ const App = () => {
   // === login form ===
 
   const loginForm = () => (
-    <div className='login_form_container'>
-      <form className='login_form' onSubmit={handleLogin}>
-        <div>
-          username
-          <input
-            type='text'
-            value={username}
-            name='Username'
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div>
-          password
-          <input
-            type='password'
-            value={password}
-            name='Password'
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <button type='submit'>login</button>
-      </form>
-    </div>
+    <Togglable buttonLabel='log in'>
+      <LoginForm
+        username={username}
+        password={password}
+        handleUsernameChange={({ target }) => setUsername(target.value)}
+        handlePasswordChange={({ target }) => setPassword(target.value)}
+        handleSubmit={handleLogin}
+      />
+    </Togglable>
   )
 
   const noteForm = () => (
-    <form onSubmit={addNote}>
-      <input value={newNote} onChange={handleNoteChange} />
-      <button type='submit'>save</button>
-    </form>
+    <Togglable buttonLabel='New note'>
+      <NoteForm
+        onSubmit={addNote}
+        value={newNote}
+        handleChange={handleNoteChange}
+        signOff={signOff}
+      />
+    </Togglable>
+    // <form onSubmit={addNote}>
+    //   <input value={newNote} onChange={handleNoteChange} />
+    //   <button type='submit'>save</button>
+    // </form>
   )
 
   //  === signoff ===
   const signOff = () => {
     window.localStorage.clear()
     return setUser(null)
-    // return loginForm()
   }
 
   return (
@@ -173,12 +169,12 @@ const App = () => {
         loginForm()
       ) : (
         <div>
-          <p>{user.name} logged-in</p>{' '}
+          <p>{user.name} logged-in</p>
+          {noteForm()}
           <button type='button' onClick={signOff}>
             {' '}
             Log Out
           </button>
-          {noteForm()}
         </div>
       )}
 
