@@ -10,7 +10,7 @@ import Togglable from './components/Togglable'
 
 const App = () => {
   const [notes, setNotes] = useState([])
-  const [newNote, setNewNote] = useState('')
+  // const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(false)
 
   const [username, setUsername] = useState('')
@@ -35,39 +35,15 @@ const App = () => {
     }
   }, [])
 
-  const addNote = async (event) => {
-    event.preventDefault()
-    const noteObject = {
-      content: newNote,
-      date: new Date().toISOString(),
-      important: Math.random() > 0.5,
-      id: notes.length + 1,
-    }
+  const addNote = (noteObject) => {
+    noteService.create(noteObject).then((returnedNote) => {
+      setNotes(notes.concat(returnedNote))
+    })
+
     setErrTextColour(false)
-    try {
-      const saveNotes = await noteService.create(noteObject)
-      // .then((returnedNote) => {
-      // setNotes(notes.concat(noteObject))
-      setNotes([...notes, saveNotes])
-      setNewNote('')
-      setErrorMessage(`Note '${noteObject.content}' succesfully saved.`)
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
-      // })
-    } catch (error) {
-      console.log(error.response.data)
-      setErrTextColour(true)
-      setErrorMessage(error.response.data)
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
-    }
+    setErrorMessage(`Note '${noteObject.content}' succesfully saved.`)
   }
 
-  const handleNoteChange = (event) => {
-    setNewNote(event.target.value)
-  }
   // show list of important and all
   const notesToShow = showAll ? notes : notes.filter((note) => note.important)
 
@@ -141,12 +117,7 @@ const App = () => {
 
   const noteForm = () => (
     <Togglable buttonLabel='New note'>
-      <NoteForm
-        onSubmit={addNote}
-        value={newNote}
-        handleChange={handleNoteChange}
-        signOff={signOff}
-      />
+      <NoteForm createNote={addNote} signOff={signOff} />
     </Togglable>
     // <form onSubmit={addNote}>
     //   <input value={newNote} onChange={handleNoteChange} />
