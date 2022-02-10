@@ -93,11 +93,11 @@ const App = () => {
       })
   }
   // === login handler ===
-  const handleLogin = async (blogObject) => {
+  const handleLogin = async (loginObject) => {
     try {
       const user = await loginService.login({
-        username: blogObject.username,
-        password: blogObject.password,
+        username: loginObject.username,
+        password: loginObject.password,
       })
       window.localStorage.setItem('loggedNoteappUser', JSON.stringify(user))
       noteService.setToken(user.token)
