@@ -13,3 +13,12 @@
 .newNote {
   background-color: blue;
 }
+
+.logInBy {
+  display: inline-flex;
+}
+.logInBy button {
+  background-color: rgb(230, 59, 59);
+  margin-left: 1rem;
+  padding: 2px 2px 2px 2px;
+}
