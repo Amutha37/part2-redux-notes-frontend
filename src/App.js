@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Note from './components/Note'
 import Notification from './components/Notification'
 import Footer from './components/Footer'
@@ -17,6 +17,8 @@ const App = () => {
 
   const [errorMessage, setErrorMessage] = useState(null)
   const [errTextColour, setErrTextColour] = useState(true)
+
+  const noteFormRef = useRef()
 
   useEffect(() => {
     noteService.getAll().then((initialNotes) => {
@@ -37,6 +39,7 @@ const App = () => {
     // noteService.create(noteObject).then((returnedNote) => {
     //   setNotes(notes.concat(returnedNote))
     // })
+    noteFormRef.current.toggleVisibility()
     setErrTextColour(false)
     try {
       const saveNotes = await noteService.create(noteObject)
@@ -144,7 +147,7 @@ const App = () => {
   )
 
   const noteForm = () => (
-    <Togglable buttonLabel='New note'>
+    <Togglable buttonLabel='New note' ref={noteFormRef}>
       <NoteForm createNote={addNote} signOff={signOff} />
     </Togglable>
     // <form onSubmit={addNote}>
@@ -167,13 +170,14 @@ const App = () => {
       {user === null ? (
         loginForm()
       ) : (
-        <div>
+        <div className='logInBy'>
           <p>{user.name} logged-in</p>
-          {noteForm()}
           <button type='button' onClick={signOff}>
             {' '}
             Log Out
           </button>
+
+          {noteForm()}
         </div>
       )}
 
