@@ -11,7 +11,7 @@ const Togglable = React.forwardRef((props, ref) => {
   }
 
   // === assign toggleVisibility for external use ===
-  // useDebugValue(visible ? 'Online' : 'Offline')
+  
   useImperativeHandle(ref, () => {
     return {
       toggleVisibility,
