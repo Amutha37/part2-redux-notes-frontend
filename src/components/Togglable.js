@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 const Togglable = React.forwardRef((props, ref) => {
   const [visible, setVisible] = useState(false)
 
+  Togglable.displayName = 'Togglable'
+
   const hideLoginInput = { display: visible ? 'none' : '' }
   const showLoginInput = { display: visible ? '' : 'none' }
 
