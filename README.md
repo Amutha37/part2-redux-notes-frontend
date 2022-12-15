@@ -151,7 +151,7 @@ In addition to testing-library , jest-dom is also installed `https://testing-lib
 
 We can use the object screen`https://testing-library.com/docs/queries/about/#screen` to access the rendered component. We use screen's method getByText `https://testing-library.com/docs/queries/bytext/` to search for an element that has the note content and ensure that it exists:
 
-### Running tests
+### Running test
 
 Create-react-app configures tests to be run in watch mode by default, which means that the npm test command will not exit once the tests have finished, and will instead wait for changes to be made to the code. Once new changes to the code are saved, the tests are executed automatically after which Jest goes back to waiting for new changes to be made.
 
@@ -190,3 +190,6 @@ Install a library user-event that makes simulating user input a bit easier:
 Clicking happens with the method click of the userEvent-library.
 
 The expectation of the test verifies that the mock function has been called exactly once.
+
+At the moment of writing (28.1.2022) there is a mismatch between the version of a dependency jest-watch-typeahead that create-react-app and user-event are using. The problem is fixed by installing a specific version:
+`npm install -D --exact jest-watch-typeahead@0.6.5`
