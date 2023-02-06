@@ -71,7 +71,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # Implement front end screen to input user and password.
 
-Run 'npm run build'
+Run `npm run build`
 
 copy to backend
 and run the appilication again.
@@ -192,4 +192,79 @@ Clicking happens with the method click of the userEvent-library.
 The expectation of the test verifies that the mock function has been called exactly once.
 
 At the moment of writing (28.1.2022) there is a mismatch between the version of a dependency jest-watch-typeahead that create-react-app and user-event are using. The problem is fixed by installing a specific version:
+
 `npm install -D --exact jest-watch-typeahead@0.6.5`
+
+##
+
+## End to end INTERGRATION testing
+
+Unit
+
+### 5.17 Bloglist end to end testing
+
+### Getting Started with Cypress
+
+E2E library Cypress has become popular within the last year. Cypress is exceptionally easy to use, and when compared to Selenium, for example, it requires a lot less hassle and headache. Its operating principle is radically different than most E2E testing libraries, because Cypress tests are run completely within the browser. Other libraries run the tests in a Node-process, which is connected to the browser through an API.
+
+<details>
+<summary>
+
+First, install `cypress` to the frontend </summary>
+
+```
+npm install --save-dev cypress
+```
+
+and by adding an npm-script :
+
+</details>
+
+ <details>
+ <summary>
+Step 1
+</summary>
+Test the application display the login by default.
+</details>
+
+<h1 align="center"> $\textcolor{orange}{REDUX\ }$
+</h1>
+
+## $\color{cyan}{Part6}$
+
+ <details>
+ <summary>
+Step 1
+</summary>
+Testing the Reduce method.
+Install deep-freeze to ensure reducer has been correctly define as an immutable function.
+
+```
+npm install --save-dev deep-freeze
+```
+
+### To run individual test file : -
+
+```
+run test file :
+```
+
+```
+npm test -- reducer/noteReducer.test.js`
+```
+
+### run specific test name or describe block name
+
+- test name
+
+```
+npm test -- -t  "a specific note is within the returned notes"
+```
+
+- test describtion
+
+```
+  npm test -- -t 'notes'
+```
+
+</details>
