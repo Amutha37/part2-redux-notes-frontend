@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 
 const VisibilityFilter = (props) => {
   const dispatch = useDispatch()
+  console.log('PROPS', props)
 
   return (
     <div>

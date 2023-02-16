@@ -43,3 +43,18 @@ npm test -- -t  "a specific note is within the returned notes"
 ```
 
 </details>
+
+## $\color{cyan}{Part6-b}$
+
+ <details>
+ <summary>
+Redux ToolKit
+</summary>
+[Redux Toolkit](https://redux-toolkit.js.org/) is a library that solves  repetitive boilerplate code for action and reduce implemented for multiple state management. `Redux Toolkit` library for example greatly simplifies the configuration of the Redux store and offers a large variety of tools to ease state management.
+
+```
+npm install @reduxjs/toolkit
+
+```
+
+</details>

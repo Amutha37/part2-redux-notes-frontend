@@ -15,13 +15,13 @@ const Notes = () => {
   //   const notes = useSelector((state) => state.notes)
 
   // ? Using fillter (radio button)
-  const notes = useSelector((state) => {
-    if (state.filter === 'ALL') {
+  const notes = useSelector((filter, notes) => {
+    if (filter === 'ALL') {
       return state.notes
     }
-    return state.filter === 'IMPORTANT'
-      ? state.notes.filter((note) => note.important)
-      : state.notes.filter((note) => !note.important)
+    return filter === 'IMPORTANT'
+      ? notes.filter((note) => note.important)
+      : notes.filter((note) => !note.important)
   })
 
   return (
