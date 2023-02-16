@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
+    "@reduxjs/toolkit": "^1.9.2",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^11.2.7",
     "axios": "^0.21.4",
     "prop-types": "^15.8.1",
@@ -22,12 +23,6 @@
     "cypress:open": "cypress open",
     "eslint": "eslint ."
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -43,7 +38,8 @@
   "proxy": "http://localhost:3001",
   "devDependencies": {
     "@testing-library/user-event": "^13.5.0",
-    "cypress": "^12.1.0",
-    "deep-freeze": "0.0.1"
+    "cypress": "^12.5.1",
+    "deep-freeze": "0.0.1",
+    "eslint-config-react-app": "^7.0.1"
   }
 }
