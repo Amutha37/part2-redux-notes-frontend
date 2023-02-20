@@ -1,5 +1,6 @@
+// REDUCER
 const filterReducer = (state = 'ALL', action) => {
-  console.log('ACTION: ', action)
+  // console.log('ACTION: ', action)
   switch (action.type) {
     case 'SET_FILTER':
       return action.payload
@@ -7,7 +8,7 @@ const filterReducer = (state = 'ALL', action) => {
       return state
   }
 }
-
+// ACTION
 export const filterChange = (filter) => {
   console.log('filter: ', filter)
   return {
