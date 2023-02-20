@@ -7,15 +7,7 @@ import { Provider } from 'react-redux'
 import App from './App'
 import noteReducer from './reducers/noteReducer'
 import filterReducer from './reducers/filterReducer'
-import { createNote } from './reducers/noteReducer'
-import { filterChange } from './reducers/filterReducer'
-//...
 
-// const reducer = combineReducers({
-//   notes: noteReducer,
-//   filter: filterReducer,
-// })
-// const store = createStore(reducer)
 const store = configureStore({
   reducer: {
     notes: noteReducer,
