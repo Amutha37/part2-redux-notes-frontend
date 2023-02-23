@@ -29,15 +29,17 @@ const noteSlice = createSlice({
       })
     },
     toggleImportanceOf(state, action) {
-      const id = action.payload
-      const noteToChange = state.find((n) => n.id === id)
+      const selectedNote = action.payload
+      const noteToChange = state.find((n) => n.id === selectedNote.id)
       const changedNote = {
         ...noteToChange,
         important: !noteToChange.important,
       }
 
       console.log('STATE', JSON.parse(JSON.stringify(state)))
-      return state.map((note) => (note.id !== id ? note : changedNote))
+      return state.map((note) =>
+        note.id !== selectedNote.id ? note : changedNote
+      )
     },
   },
 })

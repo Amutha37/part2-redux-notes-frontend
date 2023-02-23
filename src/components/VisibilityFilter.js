@@ -1,29 +1,31 @@
 import { filterChange } from '../reducers/filterReducer'
 import { useDispatch } from 'react-redux'
+import { setNotification } from '../reducers/notificationReducer'
 
 const VisibilityFilter = (props) => {
   const dispatch = useDispatch()
-  console.log('PROPS', JSON.parse(JSON.stringify(props)))
+
+  const handleSelect = (sts) => {
+    console.log(sts)
+    dispatch(filterChange(sts))
+    dispatch(setNotification(`You selected  : ${sts}`, 5))
+  }
 
   return (
     <div>
-      all
+      All
+      <input type='radio' name='filter' onChange={() => handleSelect('ALL')} />
+      Important
       <input
         type='radio'
         name='filter'
-        onChange={() => dispatch(filterChange('ALL'))}
+        onChange={() => handleSelect('IMPORTANT')}
       />
-      important
+      Nonimportant
       <input
         type='radio'
         name='filter'
-        onChange={() => dispatch(filterChange('IMPORTANT'))}
-      />
-      nonimportant
-      <input
-        type='radio'
-        name='filter'
-        onChange={() => dispatch(filterChange('NONIMPORTANT'))}
+        onChange={() => handleSelect('NOT IMPORTANT')}
       />
     </div>
   )

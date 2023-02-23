@@ -7,10 +7,12 @@ import { Provider } from 'react-redux'
 import App from './App'
 import noteReducer from './reducers/noteReducer'
 import filterReducer from './reducers/filterReducer'
+import notificationReducer from './reducers/notificationReducer'
 
 const store = configureStore({
   reducer: {
     notes: noteReducer,
+    notification: notificationReducer,
     filter: filterReducer,
   },
 })

@@ -3,6 +3,7 @@ const Footer = () => {
     color: 'green',
     fontStyle: 'italic',
     fontSize: 16,
+    marginBottom: 60,
   }
   return (
     <div style={footerStyle}>

@@ -25,7 +25,7 @@ run test file :
 ```
 
 ```
-npm test -- reducer/noteReducer.test.js
+npm test --reducer/noteReducer.test.js
 ```
 
 ### run specific test name or describe block name
@@ -56,5 +56,17 @@ Redux ToolKit
 npm install @reduxjs/toolkit
 
 ```
+
+</details>
+
+## $\color{cyan}{Part6-b12-13}$
+
+ <details>
+ <summary>
+Step 10
+</summary>
+- Render message stored in the Redux store.
+
+- Create separate reducer for the notification using `createSlice` .
 
 </details>
