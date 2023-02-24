@@ -31,8 +31,8 @@ const Notes = () => {
 
   return (
     <ol>
-      {notes.map((note) => (
-        <li id='list' key={note.id}>
+      {notes.map((note, index) => (
+        <li id='list' key={index}>
           {note.content}
           <strong> {note.important ? 'IMPORTANT' : 'NOT IMPORTANT'}</strong> {}
           <button onClick={() => handleStatus(note)}> status</button>

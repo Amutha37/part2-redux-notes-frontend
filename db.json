@@ -19,6 +19,11 @@
       "content": "State of store can contain any data",
       "important": false,
       "id": 2
+    },
+    {
+      "content": "testing one ",
+      "important": false,
+      "id": 3
     }
   ]
 }
