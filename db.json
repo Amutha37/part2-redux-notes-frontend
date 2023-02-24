@@ -13,17 +13,37 @@
     {
       "content": "Reducer defines how redux store works",
       "important": true,
-      "id": 1
+      "id": 3
     },
     {
       "content": "State of store can contain any data",
       "important": false,
-      "id": 2
+      "id": 4
     },
     {
       "content": "testing one ",
       "important": false,
-      "id": 3
+      "id": 5
+    },
+    {
+      "content": "testing one ",
+      "important": false,
+      "id": 6
+    },
+    {
+      "content": "testing one ",
+      "important": false,
+      "id": 7
+    },
+    {
+      "content": "testing one ",
+      "important": false,
+      "id": 8
+    },
+    {
+      "content": "Where is Ashaa",
+      "important": false,
+      "id": 9
     }
   ]
 }
