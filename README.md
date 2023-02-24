@@ -59,7 +59,7 @@ npm install @reduxjs/toolkit
 
 </details>
 
-## $\color{cyan}{Part6-b12-13}$
+$\color{cyan}{Part6-b12-13}$
 
  <details>
  <summary>
@@ -71,7 +71,7 @@ Step 10
 
 </details>
 
-## $\color{cyan}{Part6-c\ -\ Communicating\ with\ server}$
+$\color{cyan}{Part6-c\ -\ Communicating\ with\ server}$
 
  <details>
  <summary>
