@@ -5,9 +5,11 @@ import ReactDOM from 'react-dom/client'
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import App from './App'
-import noteReducer from './reducers/noteReducer'
 import filterReducer from './reducers/filterReducer'
 import notificationReducer from './reducers/notificationReducer'
+// initialize data from server
+// import noteService from './services/notes'
+import noteReducer from './reducers/noteReducer'
 
 const store = configureStore({
   reducer: {
@@ -23,6 +25,12 @@ const store = configureStore({
 // store.dispatch(filterChange('IMPORTANT'))
 // store.dispatch(
 //   createNote('combineReducers forms one reducer from many simple reducers')
+// )
+
+// fetching data from server
+// noteService.getAll().then((notes) =>
+//   // notes.forEach((note) => {
+//   store.dispatch(setNotes(notes))
 // )
 
 ReactDOM.createRoot(document.getElementById('root')).render(

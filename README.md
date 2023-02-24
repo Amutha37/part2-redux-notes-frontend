@@ -70,3 +70,48 @@ Step 10
 - Create separate reducer for the notification using `createSlice` .
 
 </details>
+
+## $\color{cyan}{Part6-c\ -\ Communicating\ with\ server}$
+
+ <details>
+ <summary>
+Step 1
+</summary>
+
+$\color{lightblue}{Step\ 1}$
+
+- Getting data from the backend
+  In this exercise we will use `json-server`.
+
+1. Create dummy data in `db.json`
+   \*\*\* which is placed in the root of the project.
+
+2. Install json-server for the project ...
+
+```
+npm install json-server --save-dev
+```
+
+3.  Add scripts line in `package.json`
+
+```
+"server": "json-server -p3001 --watch db.
+
+```
+
+4.  Launch json-server
+    ```
+    npm run server
+    ```
+
+$\color{lightyellow}{Fetching\ data\ from\ the\ backend}$
+
+Use a fetch method to get the data using `axios` in `services/anecdotes.js` .
+
+```
+npm install axios
+```
+
+\*\* We did not use `await` where it only works inside `async` functions.For the simple nature of this operation we'll abtain from using `async`.
+
+</details>
