@@ -5,16 +5,19 @@ import VisibilityFilter from './components/VisibilityFilter'
 import Footer from './components/Footer'
 import Notification from './components/Notification'
 // initialiazation of data
-import noteService from './services/notes'
-import { setNotes } from './reducers/noteReducer'
+// import noteService from './services/notes'
+// import { setNotes } from './reducers/noteReducer'
+// relace with
+import { initializeNotes } from './reducers/noteReducer'
+
 import { useDispatch } from 'react-redux'
 
 const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    noteService.getAll().then((notes) => dispatch(setNotes(notes)))
-  }, [])
+    dispatch(initializeNotes())
+  }, [dispatch])
 
   return (
     <div id='container'>

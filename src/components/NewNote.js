@@ -11,8 +11,8 @@ const NewNote = () => {
     const content = event.target.note.value
     event.target.note.value = ''
     // create new not in backend server and redux
-    const newNote = await noteService.createNew(content)
-    dispatch(createNote(newNote))
+
+    dispatch(createNote(content))
     dispatch(setNotification(`You added new note ${content}`, 5))
   }
 

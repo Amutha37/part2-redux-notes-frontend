@@ -114,4 +114,6 @@ npm install axios
 
 \*\* We did not use `await` where it only works inside `async` functions.For the simple nature of this operation we'll abtain from using `async`.
 
+5. Change the creation of new notes to be stored in backend(db.json).
+
 </details>

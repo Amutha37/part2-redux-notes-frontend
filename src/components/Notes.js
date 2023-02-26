@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleImportanceOf } from '../reducers/noteReducer'
+import { updatedNoteStatus } from '../reducers/noteReducer'
 import { setNotification } from '../reducers/notificationReducer'
 
 const Notes = () => {
@@ -20,7 +20,8 @@ const Notes = () => {
 
   const handleStatus = (note) => {
     console.log(note)
-    dispatch(toggleImportanceOf(note))
+
+    dispatch(updatedNoteStatus(note))
     dispatch(
       setNotification(
         `You change the status of the note  : '${note.content}'`,
@@ -28,7 +29,7 @@ const Notes = () => {
       )
     )
   }
-
+  console.log(notes)
   return (
     <ol>
       {notes.map((note, index) => (
