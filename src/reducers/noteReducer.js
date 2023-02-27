@@ -8,12 +8,7 @@ const noteSlice = createSlice({
     toggleImportanceOf(state, action) {
       const selectedNote = action.payload
 
-      // const noteToChange = state.find((n) => n.id === selectedNote.id)
-      // const changedNote = {
-      //   ...noteToChange,
-      //   important: !noteToChange.important,
-      // }
-      console.log('STATE', JSON.parse(JSON.stringify(state)))
+      // console.log('STATE', JSON.parse(JSON.stringify(state)))
       const statee = state.map((note) =>
         note.id !== selectedNote.id ? note : selectedNote
       )
@@ -51,7 +46,6 @@ export const updateChangedNote = (note) => {
   return async (dispatch) => {
     dispatch(toggleImportanceOf(changeNoteImportants))
     const newNotee = await noteService.updateNote(changeNoteImportants)
-    // dispatch(toggleImportanceOf(newNotee))
   }
 }
 

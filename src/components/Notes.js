@@ -20,7 +20,7 @@ const Notes = () => {
   // ? Using fillter (radio button)
   // const notes = useSelector((state) => state.notes)
   const notes = useSelector((state) => {
-    console.log('state', state)
+    // console.log('state', state)
     if (state.filter === 'ALL') {
       return state.notes
     }
@@ -30,7 +30,6 @@ const Notes = () => {
   })
 
   const handleStatus = (note) => {
-    console.log(note)
     dispatch(updateChangedNote(note))
     dispatch(
       setNotification(

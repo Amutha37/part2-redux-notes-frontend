@@ -7,7 +7,7 @@
     },
     {
       "content": "Update state in db.json",
-      "important": false,
+      "important": true,
       "id": 2
     },
     {
@@ -32,7 +32,7 @@
     },
     {
       "content": "Where is Ashaa",
-      "important": false,
+      "important": true,
       "id": 7
     },
     {
@@ -47,7 +47,7 @@
     },
     {
       "content": "Dispatch ayload error .",
-      "important": false,
+      "important": true,
       "id": 10
     },
     {
