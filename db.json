@@ -2,7 +2,7 @@
   "notes": [
     {
       "content": "State of store can contain any data",
-      "important": false,
+      "important": true,
       "id": 1
     },
     {
@@ -12,12 +12,12 @@
     },
     {
       "content": "React Redux state update",
-      "important": true,
+      "important": false,
       "id": 3
     },
     {
       "content": "State of store can contain any data",
-      "important": false,
+      "important": true,
       "id": 4
     },
     {
@@ -27,13 +27,33 @@
     },
     {
       "content": "Thank you for the new state.",
-      "important": false,
+      "important": true,
       "id": 6
     },
     {
       "content": "Where is Ashaa",
-      "important": true,
+      "important": false,
       "id": 7
+    },
+    {
+      "content": "Dispatch ayload error .",
+      "important": true,
+      "id": 8
+    },
+    {
+      "content": "testing one ",
+      "important": true,
+      "id": 9
+    },
+    {
+      "content": "Dispatch ayload error .",
+      "important": false,
+      "id": 10
+    },
+    {
+      "content": "Dispatch ayload error .",
+      "important": false,
+      "id": 11
     }
   ]
 }

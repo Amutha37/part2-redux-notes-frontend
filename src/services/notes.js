@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3001/notes'
+const baseUrl = 'http://localhost:3002/notes'
 
 const getAll = async () => {
   const response = await axios.get(baseUrl)
@@ -16,12 +16,12 @@ const createNew = async (content) => {
 // export const updateNote = (updatedNote) =>
 //   axios.put(`${baseUrl}/${updatedNote.id}`, updatedNote).then((res) => res.data)
 
-const updateNote = (content) => {
+const updateNote = (note) => {
   // const changeNoteImportants = {
-  //   ...content,
-  //   important: !content.important,
+  //   ...note,
+  //   important: !note.important,
   // }
-  const respond = axios.put(`${baseUrl}/${changeNoteImportants.id}`, content)
+  const respond = axios.put(`${baseUrl}/${note.id}`, note)
 
   return respond
 }
