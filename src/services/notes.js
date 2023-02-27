@@ -17,11 +17,11 @@ const createNew = async (content) => {
 //   axios.put(`${baseUrl}/${updatedNote.id}`, updatedNote).then((res) => res.data)
 
 const updateNote = (content) => {
-  const changeNoteImportants = {
-    ...content,
-    important: !content.important,
-  }
-  const respond = axios.put(`${baseUrl}/${changeNoteImportants.id}`)
+  // const changeNoteImportants = {
+  //   ...content,
+  //   important: !content.important,
+  // }
+  const respond = axios.put(`${baseUrl}/${changeNoteImportants.id}`, content)
 
   return respond
 }

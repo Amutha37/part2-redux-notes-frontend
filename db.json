@@ -1,13 +1,17 @@
 {
   "notes": [
     {
+      "content": "State of store can contain any data",
+      "important": false,
       "id": 1
     },
     {
+      "content": "Update state in db.json",
+      "important": false,
       "id": 2
     },
     {
-      "content": "Reducer defines how redux store works",
+      "content": "React Redux state update",
       "important": true,
       "id": 3
     },
@@ -22,24 +26,14 @@
       "id": 5
     },
     {
-      "content": "testing one ",
+      "content": "Thank you for the new state.",
       "important": false,
       "id": 6
     },
     {
-      "content": "testing one ",
-      "important": false,
-      "id": 7
-    },
-    {
-      "content": "testing one ",
-      "important": false,
-      "id": 8
-    },
-    {
       "content": "Where is Ashaa",
-      "important": false,
-      "id": 9
+      "important": true,
+      "id": 7
     }
   ]
 }
