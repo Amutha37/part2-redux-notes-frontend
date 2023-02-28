@@ -120,6 +120,6 @@ npm install axios
 
 6. Changes of important note status to be updated in backend.
 
-7. Create notification message.
+7. Create notification message handling two actions.
 
 </details>
