@@ -15,10 +15,9 @@ import { setNotification } from '../reducers/notificationReducer'
 
 const Notes = () => {
   const dispatch = useDispatch()
-  //   const notes = useSelector((state) => state.notes)
 
   // ? Using fillter (radio button)
-  // const notes = useSelector((state) => state.notes)
+
   const notes = useSelector((state) => {
     // console.log('state', state)
     if (state.filter === 'ALL') {
