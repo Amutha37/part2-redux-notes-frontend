@@ -2,17 +2,17 @@
   "notes": [
     {
       "content": "State of store can contain any data",
-      "important": true,
+      "important": false,
       "id": 1
     },
     {
       "content": "Update state in db.json",
-      "important": true,
+      "important": false,
       "id": 2
     },
     {
       "content": "React Redux state update",
-      "important": false,
+      "important": true,
       "id": 3
     },
     {

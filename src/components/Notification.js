@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useSelector } from 'react-redux'
 
 // anecdotes: anecdoteReducer,
@@ -20,10 +19,3 @@ const Notification = () => {
 }
 
 export default Notification
-=======
-import React from "react";
-
-const Notification = ({ message }) => <p className="error">{message}</p>;
-
-export default Notification;
->>>>>>> 6f2290c (fetch data from backend node express)
